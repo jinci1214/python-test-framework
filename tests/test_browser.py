@@ -1,15 +1,10 @@
-from playwright.sync_api import sync_playwright
-
-def test_open_baidu():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto("https://www.baidu.com")
-
-        title = page.title()
-        print(title)
-
-        assert "百度" in title
+from playwright.sync_api import Page
 
 
-        browser.close()
+def test_open_baidu(page: Page):
+    page.goto("https://www.baidu.com")
+
+    title = page.title()
+    print(title)
+
+    assert "百度" in title

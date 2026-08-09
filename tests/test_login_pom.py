@@ -1,34 +1,17 @@
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import Page
 from pages.login_page import LoginPage
 
 
-def test_login_success():
+def test_login_success(page: Page):
+    login_page = LoginPage(page)
 
-    with sync_playwright() as p:
+    login_page.open()
 
-        browser = p.chromium.launch(
-            headless=True
-        )
+    login_page.login(
+        "tomsmith",
+        "SuperSecretPassword!"
+    )
 
-        page = browser.new_page()
+    message = login_page.get_message()
 
-
-        login_page = LoginPage(page)
-
-
-        login_page.open()
-
-
-        login_page.login(
-            "tomsmith",
-            "SuperSecretPassword!"
-        )
-
-
-        message = login_page.get_message()
-
-
-        assert "You logged into a secure area" in message
-
-
-        browser.close()
+    assert "You logged into a secure area" in message
