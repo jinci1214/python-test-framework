@@ -1,5 +1,7 @@
 from playwright.sync_api import Page
+import pytest
 
+pytestmark = pytest.mark.ui
 
 def test_open_baidu(page: Page):
     page.goto("https://www.baidu.com")

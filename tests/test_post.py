@@ -1,4 +1,7 @@
 import requests
+import pytest
+
+pytestmark = pytest.mark.api
 
 def test_post_json():
     url = "https://postman-echo.com/post"

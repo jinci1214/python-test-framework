@@ -1,5 +1,7 @@
 from playwright.sync_api import Page
+import pytest
 
+pytestmark = pytest.mark.ui
 
 def test_login_page(page: Page):
     page.goto("https://the-internet.herokuapp.com/login")

@@ -1,5 +1,7 @@
 import pytest
 
+pytestmark = pytest.mark.unit
+
 @pytest.mark.parametrize(
     "username,password,expected",
     [

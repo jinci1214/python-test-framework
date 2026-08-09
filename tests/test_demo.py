@@ -1,3 +1,6 @@
+import pytest
+pytestmark = pytest.mark.unit
+
 def login(username,password):
     if username == "admin" and password == "123456":
         return "登录成功"

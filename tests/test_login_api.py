@@ -1,6 +1,8 @@
 from api.login_api import LoginAPI
 from utils.logger import get_logger
+import pytest
 
+pytestmark = pytest.mark.api
 
 logger = get_logger()
 
