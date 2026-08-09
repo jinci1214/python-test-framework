@@ -1,12 +1,18 @@
+from pathlib import Path
+
 import yaml
 
 
-def load_config():
+CONFIG_PATH = (
+    Path(__file__).resolve().parent.parent
+    / "config"
+    / "config.yaml"
+)
 
-    with open(
-        "config/config.yaml",
+
+def load_config():
+    with CONFIG_PATH.open(
         "r",
         encoding="utf-8"
-    ) as f:
-
-        return yaml.safe_load(f)
+    ) as config_file:
+        return yaml.safe_load(config_file)
