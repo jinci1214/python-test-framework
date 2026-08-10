@@ -23,3 +23,23 @@ def test_load_config_does_not_depend_on_working_directory(
     config = load_config()
 
     assert "base_url" in config
+
+def test_environment_variables_override_yaml(monkeypatch):
+    monkeypatch.setenv(
+        "TEST_BASE_URL",
+        "https://test.example.com"
+    )
+    monkeypatch.setenv(
+        "TEST_USERNAME",
+        "environment-user"
+    )
+    monkeypatch.setenv(
+        "TEST_PASSWORD",
+        "environment-password"
+    )
+
+    config = load_config()
+
+    assert config["base_url"] == "https://test.example.com"
+    assert config["username"] == "environment-user"
+    assert config["password"] == "environment-password"
